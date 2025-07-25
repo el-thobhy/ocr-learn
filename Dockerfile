@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy requirements file dan install semua dependensi
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r ocr_api/requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Salin semua kode ke container
 COPY . .
