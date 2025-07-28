@@ -16,4 +16,4 @@ RUN apt-get update && apt-get install -y \
 COPY . .
 
 # Jalankan server saat container start
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "${PORT}"]
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT}"]
