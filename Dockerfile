@@ -6,13 +6,14 @@ WORKDIR /app
 
 # Install requirements
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN apt-get update && apt-get install -y \
+    tesseract-ocr \
+    libgl1 \
+    && pip install --upgrade pip && pip install -r requirements.txt
+
 
 # Copy semua kode ke container
 COPY . .
 
-# Pindah ke folder project
-WORKDIR /app/ocr_api
-
-# Jalankan server, ambil port dari env Zeabur
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT}"]
+# Jalankan server saat container start
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "${PORT}"]
