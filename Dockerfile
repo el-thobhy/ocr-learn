@@ -6,16 +6,14 @@ WORKDIR /app
 
 # Copy requirements file dan install semua dependensi
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN apt-get update && apt-get install -y \
+    tesseract-ocr \
+    libgl1 \
+    && pip install --upgrade pip && pip install -r requirements.txt
+
 
 # Salin semua kode ke container
 COPY . .
 
-# Masuk ke folder tempat app.py berada
-WORKDIR /app/ocr_api
-
-# Expose port FastAPI
-EXPOSE 8000
-
 # Jalankan server saat container start
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "${PORT}"]

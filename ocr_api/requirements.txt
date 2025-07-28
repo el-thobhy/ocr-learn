@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-pillow
-protobuf
-sentencepiece
-python-multipart
-transformers
-torch
-opencv-python
