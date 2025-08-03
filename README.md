@@ -5,8 +5,8 @@ FastAPI backend for OCR processing.
 
 ## Usage
 ```
-docker build -t ocr-api .
-docker run -p 8000:8000 ocr-api
+docker build -t python-ocr .
+docker run --name fastapi-container -e PORT=8000 -p 8000:8000 python-ocr
 ```
 
 ## Endpoint
